@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react'
+import compose from '@kyleholzinger/react-compose'
 
 import './App.css'
 import Dump from './Dump'
@@ -21,31 +22,22 @@ class ComponentC extends Component {
   }
 }
 
+const ComposedComponent = compose([
+  { component: ComponentA, props: { testPropA: 1 } },
+  { component: ComponentB, props: { testPropB: 2 } },
+  { component: ComponentC, props: { testPropC: 3 } }
+])
+
 class App extends Component {
   render() {
     return (
-      <div>
-        <ComponentA>
-          {val => (
-            <ComponentB>
-              {val2 => (
-                <ComponentC>
-                  {val3 => (
-                    <div>
-                      The values passed were:{' '}
-                      <Dump
-                        ComponentAVal={val}
-                        ComponentBVal={val2}
-                        ComponentCVal={val3}
-                      />
-                    </div>
-                  )}
-                </ComponentC>
-              )}
-            </ComponentB>
-          )}
-        </ComponentA>
-      </div>
+      <ComposedComponent>
+        {(...args) => (
+          <div>
+            The values passed were: <Dump allArgs={args} />
+          </div>
+        )}
+      </ComposedComponent>
     )
   }
 }
