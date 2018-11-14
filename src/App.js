@@ -23,9 +23,9 @@ class Validate extends Component {
 }
 
 const ComposedComponent = compose([
-  { component: MousePosition, props: { relative: true } },
-  { component: Subscription, props: { url: '/api/notes' } },
-  { component: Validate  }
+  <MousePosition relative={true} />,
+  <Subscription url="/api/notes" />,
+  <Validate />
 ])
 
 class App extends Component {
