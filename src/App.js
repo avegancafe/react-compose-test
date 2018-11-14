@@ -42,4 +42,32 @@ class App extends Component {
   }
 }
 
+class App2 extends Component {
+  render() {
+    return (
+      <MousePosition relative>
+        {
+          (mousePosition) => (
+            <Subscription url="">
+              {
+                (data) => (
+                  <Validate>
+                    {
+                      (err) => (
+                        <div>
+                          The values passed were: <Dump allArgs={[mousePosition, data, err]} />
+                        </div>
+                      )
+                    }
+                  </Validate>
+                )
+              }
+            </Subscription>
+          )
+        }
+      </MousePosition>
+    )
+  }
+}
+
 export default App
